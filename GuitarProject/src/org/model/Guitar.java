@@ -12,17 +12,20 @@ public class Guitar {
 	private String model;
 	private String backWood;
 	private String frontWood;
+	private double price;
 	
 	public Guitar(String serialNumber,
 			String builder,
 			String model,
 			String backWood,
-			String frontWood) {
+			String frontWood,
+			double price) {
 		this.serialNumber = serialNumber;
 		this.builder =builder;
 		this.model = model;
 		this.backWood = backWood;
 		this.frontWood = frontWood;
+		this.price = price;
 	}
 
 	public String getSerialNumber() {
@@ -63,6 +66,14 @@ public class Guitar {
 
 	public void setFrontWood(String frontWood) {
 		this.frontWood = frontWood;
+	}
+
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
 	}
 	
 }
