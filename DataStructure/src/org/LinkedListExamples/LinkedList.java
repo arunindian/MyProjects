@@ -74,5 +74,34 @@ public class LinkedList {
 			temp = temp.next;
 		}
 	}
+	
+	/**
+	 * Deletes node at a given position
+	 * 
+	 */
+	public void deleteNodeAtPos(int pos) {
+		
+		if(head == null) {
+			return;
+		}
+		
+		Node temp = this.head;
+		
+		if(pos == 0) {
+			head = temp.next;
+			return;
+		}
+		
+		for(int i=0 ; i < pos-1 && temp != null;i++) {
+			temp = temp.next;
+		}
+		
+		if(temp == null || temp.next == null) {
+			return;
+		}
+		
+		Node next = temp.next.next;
+		temp.next = next;
+	}
 
 }
