@@ -82,6 +82,9 @@ public class Graph {
 		}
 	}
 	
+	/**
+	 * topological sort
+	 */
 	private void topologicalSort(){
 		Stack<Integer> stack = new Stack<>();
 		
@@ -116,22 +119,57 @@ public class Graph {
 		stack.push(v);
 	}
 	
+	/**
+	 * Method to find cycle in DG
+	 * @return
+	 */
+	private boolean isCyclic() {
+		boolean[] visited = new boolean[V];
+		boolean[] recStack = new boolean[V];
+		
+		Arrays.fill(visited, false);
+		Arrays.fill(visited, false);
+		
+		for(int v=0;v<this.V;v++) {
+			if(isCyclicUtil(visited, recStack, v)){
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	private boolean isCyclicUtil(boolean[] visited, boolean[] recStack, int v) {
+		visited[v] = true;
+		recStack[v] = true;
+		
+		Iterator<Integer> itr = adj[v].iterator();
+		while(itr.hasNext()) {
+			Integer i = itr.next();
+			if(!visited[i] && isCyclicUtil(visited, recStack, i)){
+				return true;
+			} else if(recStack[i]){
+				return true;
+			}
+		}
+		
+		return true;
+	}
+	
 	// Driver method
     public static void main(String args[])
     {
-    	Graph g = new Graph(4);
+    	  Graph g = new Graph(4);
+    	    g.addEdge(0, 1);
+    	    g.addEdge(0, 2);
+    	    g.addEdge(1, 2);
+    	    g.addEdge(2, 0);
+    	    g.addEdge(2, 3);
+    	    g.addEdge(3, 3);
     	 
-        g.addEdge(0, 1);
-        g.addEdge(0, 2);
-        g.addEdge(1, 2);
-        g.addEdge(2, 0);
-        g.addEdge(2, 3);
-        g.addEdge(3, 3);
- 
-        System.out.println("Following is Breadth First Traversal "+
-                           "(starting from vertex 2)");
- 
-        g.BFS(2);
+    	    if(g.isCyclic())
+    	        System.out.println("Cycle exists");
+    	    else
+    	        System.out.println("No Cycles");
     }
 
 }
