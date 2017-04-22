@@ -1,10 +1,13 @@
 package com.model;
 
+/**
+ * Defines all the method that will be placed in the cache
+ */
 public interface Cacheable {
 	
 	/**
-	 * By requiring all objects to know their own expirations, the algorithm is abstracted from 
-	 * caching service,, there by providing maximum flexibilty as each object and define it own 
+	 * By requiring all objects to know their own expirations, the Expiring algorithm is abstracted from 
+	 * caching service, there by providing maximum flexibilty as each object can define it own 
 	 * expiration strategy
 	 * 
 	 */
